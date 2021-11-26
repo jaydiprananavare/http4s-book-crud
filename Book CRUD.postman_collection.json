@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "38435d72-6bb8-4e1c-b4e5-b87dd10dcc6a",
+		"name": "Book CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\": \"Scala with Cats\",\n\"author\": \"Noel Welsh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/books/633ffc42-fbcd-4de2-b516-4c5da5236464",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"books",
+						"633ffc42-fbcd-4de2-b516-4c5da5236464"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get A Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/books/d2d724bb-732c-4916-ad95-7311f8e171e3",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"books",
+						"d2d724bb-732c-4916-ad95-7311f8e171e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"Scala with Catssss\",\n        \"author\": \"Noel Welsh\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9000/books/d2d724bb-732c-4916-ad95-7311f8e171e3",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"books",
+						"d2d724bb-732c-4916-ad95-7311f8e171e3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
