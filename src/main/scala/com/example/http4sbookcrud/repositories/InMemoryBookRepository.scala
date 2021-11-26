@@ -6,7 +6,7 @@ import cats.data.EitherT
 import cats.effect.IO
 import com.example.http4sbookcrud.exceptions.{BusinessError, ResourceDoesNotExists}
 import com.example.http4sbookcrud.models.Book
-import com.example.http4sbookcrud.{IoOps, ResultT}
+import com.example.http4sbookcrud.{Complete, IoOps, ResultT}
 
 import scala.collection.mutable
 
@@ -32,22 +32,22 @@ class InMemoryBookRepository extends BookRepository {
 
   override def getBooks: ResultT[List[Book]] = IO.pure(bookDB.values.toList).adaptErrorT()
 
-  override def updateBook(id: String, book: Book): ResultT[Unit] = {
+  override def updateBook(id: String, book: Book): ResultT[Complete] = {
     for {
       _ <- getBook(id)
       updatedBook <- IO(bookDB.put(id, book.copy(id = Some(id)))).adaptErrorT()
     } yield {
       val _ = updatedBook match {
         case Some(_) => EitherT.rightT[IO, BusinessError](())
-        case None => EitherT.leftT[IO, Unit](ResourceDoesNotExists())
+        case None => EitherT.leftT[IO, Complete](ResourceDoesNotExists())
       }
     }
   }
 
-  override def deleteBook(id: String): ResultT[Unit] = {
+  override def deleteBook(id: String): ResultT[Complete] = {
     bookDB.remove(id) match {
       case Some(_) => EitherT.rightT[IO, BusinessError](())
-      case None => EitherT.leftT[IO, Unit](ResourceDoesNotExists())
+      case None => EitherT.leftT[IO, Complete](ResourceDoesNotExists())
     }
   }
 }
